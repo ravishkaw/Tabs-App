@@ -21,7 +21,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    // fetchJobs();
+    fetchJobs();
   }, []);
 
   if (isLoading) {
