@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+import JobInfo from "./components/JobInfo";
+import BtnContainer from "./components/BtnContainer";
+
+const url = "https://www.course-api.com/react-tabs-project";
+
+const App = () => {
+  const [jobs, setJobs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentItem, setCurrentItem] = useState(0);
+
+  const fetchJobs = async () => {
+    setIsLoading(true);
+    const resp = await fetch(url);
+    const newJobs = await resp.json();
+
+    setJobs(newJobs);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    // fetchJobs();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <section className="jobs-center">
+        <div className="loading"></div>
+      </section>
+    );
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
-
-export default App
+    <section className="jobs-center">
+      <BtnContainer
+        jobs={jobs}
+        currentItem={currentItem}
+        setCurrentItem={setCurrentItem}
+      />
+      <JobInfo jobs={jobs} currentItem={currentItem} />
+    </section>
+  );
+};
+export default App;

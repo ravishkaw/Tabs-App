@@ -1,42 +1,118 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+:root {
+  --primary-color: #14b8a6;
+  --black-color-1: #0f172a;
+  --black-color-2: #334155;
+  --black-color-3: #64748b;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+.jobs-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.loading {
+  width: 75px;
+  height: 75px;
+  border: 6px solid var(--black-color-1);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spinner 1s linear infinite;
+}
+
+.btn-container {
+  margin-bottom: 1rem;
+}
+
+.company-btn {
+  padding: 0.25rem 0.5rem;
+  margin: 0 1rem;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn-active {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  font-weight: 500;
+}
+
+.job-info {
+  margin: 2rem;
+  max-width: 600px;
+}
+
+.job-title {
+  color: var(--black-color-1);
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.job-company {
+  display: inline-block;
+  background-color: #cbd5e1;
+  font-size: 0.75rem;
+  padding: 0.5em;
+  color: var(--black-color-2);
+  border-radius: 4px;
+  margin: 0.5rem 0;
+}
+
+.job-dates {
+  color: var(--black-color-3);
+  margin-bottom: 1rem;
+}
+
+.job-duties {
+  display: flex;
+  align-items: center;
+}
+
+.job-icon {
+  color: var(--primary-color);
+  margin-right: 1.5rem;
+  flex-shrink: 0;
+}
+
+.job-duties p {
+  color: var(--black-color-2);
+  margin: 0.5rem 0;
+}
+
+@keyframes spinner {
   to {
     transform: rotate(360deg);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media screen and (min-width: 768px) {
+  .jobs-center {
+    flex-direction: row;
   }
-}
 
-.card {
-  padding: 2em;
-}
+  .btn-container {
+    display: flex;
+    flex-direction: column;
+  }
 
-.read-the-docs {
-  color: #888;
+  .company-btn {
+    margin: 0.3rem 1rem;
+  }
+  .btn-active {
+    border: none;
+    border-left: 2px solid var(--primary-color);
+  }
 }
